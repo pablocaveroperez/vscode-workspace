@@ -10,5 +10,8 @@ print(cuentasMadridYSegovia)
 
 suma =  0
 
-for x in cuentas :
-     suma += list(cuentas.values())[x][0]
+for x in range(0,cuentas.__len__()):
+     suma += int(list(cuentas.values())[x][0])
+     print(suma)
+
+print(suma)
