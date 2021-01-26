@@ -1,27 +1,30 @@
 from P1.Modelo.Persona import Persona
 
+
 class Vendedor(Persona):
     def __init__(self, NIF, nombre, apellidos, usuario, password):
         super().__init__(NIF, nombre, apellidos)
-        self.telefono = usuario
-        self.direccion = password
+        self.__usuario = usuario
+        self.__password = password
 
     @property
     def usuario(self):
-        return self.usuario
+        return self.__usuario
+
     @usuario.setter
-    def telefono(self, usuario):
-        self.usuario = str(usuario)
+    def usuario(self, usuario):
+        self.__usuario = str(usuario)
 
     @property
     def password(self):
-        return self.password
+        return self.__password
+
     @password.setter
     def password(self, password):
-        self.password = str(password)
-    
+        self.__password = str(password)
+
     def __str__(self):
         txt = super().__str__()
-        txt += "Usuario: " + self.usuario
-        txt += "\nPassword: " + self.password
+        txt += "Usuario: " + self.__usuario
+        txt += "\nPassword: " + self.__password
         return txt
