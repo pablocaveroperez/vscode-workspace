@@ -23,5 +23,5 @@ class Vendedor(Persona):
     def __str__(self):
         txt = super().__str__()
         txt += "Usuario: " + self.usuario
-        txt += "\Password: " + self.password
+        txt += "\nPassword: " + self.password
         return txt
