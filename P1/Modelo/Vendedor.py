@@ -1,4 +1,4 @@
-from P1.Persona import Persona
+from P1.Modelo.Persona import Persona
 
 class Vendedor(Persona):
     def __init__(self, NIF, nombre, apellidos, usuario, password):

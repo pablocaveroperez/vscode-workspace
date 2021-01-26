@@ -1,7 +1,7 @@
-from P1.Persona import Persona
-from P1.Cliente import Cliente
-from P1.Vendedor import Vendedor
-from P1.Pedido import Pedido
+from P1.Modelo.Persona import Persona
+from P1.Modelo.Cliente import Cliente
+from P1.Modelo.Vendedor import Vendedor
+from P1.Modelo.Pedido import Pedido
 
 class Tienda:
     __personas = []
@@ -51,7 +51,7 @@ class Tienda:
         iCantidad = 0
         for x in self.__personas:
             if (type(x) == Cliente):
-                iCantidad += iCantidad
+                iCantidad += 1
         return iCantidad
     
     def numVendedores(self):

@@ -1,5 +1,6 @@
-from P1.Cliente import Cliente
-from P1.Vendedor import Vendedor
+from P1.Modelo.Cliente import Cliente
+from P1.Modelo.Vendedor import Vendedor
+
 
 nif = "27582722b"
 nombre = "Isnasi"
@@ -8,7 +9,6 @@ telefono = 678945123
 direccion = "calle santa rita s/n"
 cliente = Cliente(nif, nombre, apellidos, telefono, direccion)
 print(cliente)
-
 
 nif = "28564258a"
 nombre = "Manolin"
