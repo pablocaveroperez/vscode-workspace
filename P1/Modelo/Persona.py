@@ -29,7 +29,7 @@ class Persona:
         self.__apellidos = str(apellidos)
 
     def __str__(self):
-        txt = "**Persona**\n"
+        txt = "\n**Persona**\n"
         txt += "Nombre:" + str(self.__nombre) + "\n"
         txt += "Apellidos: " + str(self.__apellidos) + "\n"
         txt += "NIF: " + str(self.__NIF) + "\n"

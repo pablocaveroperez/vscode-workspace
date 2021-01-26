@@ -56,7 +56,7 @@ class Tienda:
         iCantidad = 0
         for x in self.__personas:
             if isinstance(x, Vendedor):
-                iCantidad += iCantidad
+                iCantidad += 1
         return iCantidad
 
     def numPedidos(self):

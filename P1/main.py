@@ -30,3 +30,27 @@ print(tienda.numClientes())
 tienda.altaCliente(cliente)
 
 print(tienda.numClientes())
+
+print(tienda.numVendedores())
+
+tienda.altaVendedor(vendedor)
+
+print(tienda.numVendedores())
+
+print(tienda.numPedidos())
+
+tienda.altaPedido(pedido)
+
+print(tienda.numPedidos())
+
+print("Listados")
+
+print(tienda.listadoClientes())
+
+print(tienda.listadoVendedores())
+
+print(tienda.listadoPedidosFecha("Mañana"))
+
+print("Importe total")
+
+print(tienda.importeTotalPedidos())

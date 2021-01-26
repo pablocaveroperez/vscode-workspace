@@ -39,7 +39,8 @@ class Pedido:
 
     def __str__(self):
         txt = "\n**Pedido**"
-        txt += "\nCliente: " + self.__oCliente
-        txt += "\nVendedor: " + self.__oVendedor
         txt += "\nFecha pedido: " + self.__fechaPedido
-        txt += "\nTotal: " + self.__total + "\n"
+        txt += "\nTotal: " + str(self.__total) + "\n"
+        txt += "Cliente: " + self.__oCliente.NIF
+        txt += "Vendedor: " + self.__oVendedor.NIF
+        return txt
