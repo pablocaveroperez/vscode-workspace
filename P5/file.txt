@@ -3,9 +3,6 @@ Nombre: jose
 Apellido: Blanco
 Telefono: 959332425
 
-Nombre: manuel
-Apellido: x
-Telefono: 951222
 
 Nombre: carlos
 Apellido: y
@@ -14,7 +11,3 @@ Telefono: 95933222
 Nombre: antonio
 Apellido: h
 Telefono: 95933333
-
-Nombre: sara
-Apellido: z
-Telefono: 4444444
