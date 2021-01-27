@@ -1,7 +1,8 @@
-from ventas.presupuestos import Cliente, ModeloDePresupuesto
+from ventas.presupuestos import *
 
 #nombreCliente = input("\nIntroduce el nombre del cliente: ")
 #apellidoCliente = input("\nIntroduce los apellidos del cliente: ")
+
 nombreCliente = "Pablo"
 apellidoCliente = "Cavero"
 cliente = Cliente()
