@@ -8,6 +8,7 @@ class Pedido:
     @property
     def oCliente(self):
         return self.__oCliente
+
     @oCliente.setter
     def oCliente(self, oCliente):
         self.__oCliente = oCliente
@@ -15,6 +16,7 @@ class Pedido:
     @property
     def oVendedor(self):
         return self.__oVendedor
+
     @oVendedor.setter
     def oVendedor(self, oVendedor):
         self.__oVendedor = oVendedor
@@ -22,6 +24,7 @@ class Pedido:
     @property
     def fechaPedido(self):
         return self.__fechaPedido
+
     @fechaPedido.setter
     def fechaPedido(self, fechaPedido):
         self.__fechaPedido = fechaPedido
@@ -29,13 +32,15 @@ class Pedido:
     @property
     def total(self):
         return self.__total
+
     @total.setter
     def total(self, total):
         self.__total == total
 
     def __str__(self):
         txt = "\n**Pedido**"
-        txt += "\nCliente: " + self.__oCliente
-        txt += "\nVendedor: " + self.__oVendedor
         txt += "\nFecha pedido: " + self.__fechaPedido
-        txt += "\nTotal: " + self.__total + "\n"
+        txt += "\nTotal: " + str(self.__total) + "\n"
+        txt += "Cliente: " + self.__oCliente.NIF
+        txt += "Vendedor: " + self.__oVendedor.NIF
+        return txt

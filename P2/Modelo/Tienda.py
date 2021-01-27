@@ -1,48 +1,31 @@
-from P1.Persona import Persona
-from P1.Cliente import Cliente
-from P1.Vendedor import Vendedor
-from P1.Pedido import Pedido
+from P1.Modelo.Cliente import Cliente
+from P1.Modelo.Pedido import Pedido
+from P1.Modelo.Vendedor import Vendedor
+import sqlite3
+
 
 class Tienda:
-    __personas = []
-    __pedidos = []
+    def __init__(self):
+        self.conn = sqlite3.connect('mydatabase.db')
+        self.cursor = self.conn.cursor()
 
-    def __init__(self, personas, pedidos):
-        self.__personas = personas
-        self.__pedidos = pedidos
-
-    @property
-    def personas(self):
-        return self.__personas
-    @personas.setter
-    def personas(self, personas):
-        self.__personas = personas
-
-    @property
-    def pedidos(self):
-        return self.__pedidos
-    @pedidos.setter
-    def pedidos(self, pedidos):
-        self.__pedidos = pedidos
-    
     def altaCliente(self, cliente):
         exito = False
-        if (type(cliente) == Cliente):
+        if isinstance(cliente, Cliente):
             self.__personas.append(cliente)
             exito = True
         return exito
 
-
     def altaVendedor(self, vendedor):
         exito = False
-        if (type(vendedor) == Vendedor):
+        if isinstance(vendedor, Vendedor):
             self.__personas.append(vendedor)
             exito = True
         return exito
 
     def altaPedido(self, pedido):
         exito = False
-        if (type(pedido) == Pedido):
+        if isinstance(pedido, Pedido):
             self.__pedidos.append(pedido)
             exito = True
         return exito
@@ -50,15 +33,15 @@ class Tienda:
     def numClientes(self):
         iCantidad = 0
         for x in self.__personas:
-            if (type(x) == Cliente):
-                iCantidad += iCantidad
+            if isinstance(x, Cliente):
+                iCantidad += 1
         return iCantidad
-    
+
     def numVendedores(self):
         iCantidad = 0
         for x in self.__personas:
-            if (type(x) == Vendedor):
-                iCantidad += iCantidad
+            if isinstance(x, Vendedor):
+                iCantidad += 1
         return iCantidad
 
     def numPedidos(self):
@@ -73,20 +56,34 @@ class Tienda:
     def listadoClientes(self):
         salida = ""
         for x in self.__personas:
-            if (type(x) == Cliente):
+            if isinstance(x, Cliente):
                 salida += x.__str__()
         return salida
 
     def listadoVendedores(self):
         salida = ""
         for x in self.__personas:
-            if (type(x) == Vendedor):
+            if isinstance(x, Vendedor):
                 salida += x.__str__()
         return salida
 
     def listadoPedidosFecha(self, fecha):
         salida = ""
         for x in self.__pedidos:
-            if (x.fechaPedido == fecha):
+            if x.fechaPedido == fecha:
                 salida += x.__str__()
         return salida
+
+    def crearTablaCliente(self):
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS cliente(dni text PRIMARY KEY, nombre text, apellidos text, telefono integer, direccion text)")
+        self.conn.commit()
+
+    def crearTablaVendedor(self):
+        self.cursor.execute(
+            "CREATE TABLE IF NOT EXISTS vendedor(dni text PRIMARY KEY, nombre text, apellidos text, usuario text, password text)")
+        self.conn.commit()
+
+    def crearTablaPedido(self):
+        self.cursor.execute(
+            "CREATE TABLE IF NOT EXISTS pedido(oCliente text PRIMARY KEY, oVendedor text PRIMARY KEY, fechaPedido text, total real)")
+        self.conn.commit()

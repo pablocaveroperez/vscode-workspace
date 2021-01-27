@@ -1,27 +1,30 @@
-from P1.Persona import Persona
+from P1.Modelo.Persona import Persona
+
 
 class Cliente(Persona):
     def __init__(self, NIF, nombre, apellidos, telefono, direccion):
         super().__init__(NIF, nombre, apellidos)
-        self.telefono = telefono
-        self.direccion = direccion
+        self.__telefono = telefono
+        self.__direccion = direccion
 
     @property
     def telefono(self):
-        return self.telefono
+        return self.__telefono
+
     @telefono.setter
     def telefono(self, telefono):
-        self.telefono = int(telefono)
+        self.__telefono = int(telefono)
 
     @property
     def direccion(self):
-        return self.direccion
+        return self.__direccion
+
     @direccion.setter
     def direccion(self, direccion):
-        self.direccion = str(direccion)
-    
+        self.__direccion = str(direccion)
+
     def __str__(self):
         txt = super().__str__()
-        txt += "Telefono: " + int(self.telefono)
-        txt += "\nDireccion: " + self.direccion
+        txt += "Telefono: " + str(self.__telefono)
+        txt += "\nDireccion: " + self.__direccion
         return txt
