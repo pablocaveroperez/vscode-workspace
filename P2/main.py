@@ -19,7 +19,7 @@ password = "123456789"
 vendedor = Vendedor(nif, nombre, apellidos, usuario, password)
 print(vendedor)
 
-fechaPedido = "Mañana"
+fechaPedido = "Manana"
 total = float(12.2)
 pedido = Pedido(cliente, vendedor, fechaPedido, total)
 
@@ -49,7 +49,7 @@ print(tienda.listadoClientes())
 
 print(tienda.listadoVendedores())
 
-print(tienda.listadoPedidosFecha("Mañana"))
+print(tienda.listadoPedidosFecha("Manana"))
 
 print("Importe total")
 

@@ -8,70 +8,81 @@ class Tienda:
     def __init__(self):
         self.conn = sqlite3.connect('mydatabase.db')
         self.cursor = self.conn.cursor()
+        self.crearTablaCliente()
+        self.crearTablaVendedor()
+        self.crearTablaPedido()
 
     def altaCliente(self, cliente):
         exito = False
         if isinstance(cliente, Cliente):
-            self.__personas.append(cliente)
+            self.cursor.execute(
+                "INSERT INTO cliente VALUES('" + cliente.NIF + ", '" + cliente.nombre + "', '" + cliente.apellidos + "', " + cliente.telefono + ", '" + cliente.direccion + "' )")
+            self.conn.commit()
             exito = True
         return exito
 
     def altaVendedor(self, vendedor):
         exito = False
         if isinstance(vendedor, Vendedor):
-            self.__personas.append(vendedor)
+            self.cursor.execute(
+                "INSERT INTO vendedor VALUES('" + vendedor.NIF + ", '" + vendedor.nombre + "', '" + vendedor.apellidos + "', '" + vendedor.usuario + "', '" + vendedor.password + "' )")
+            self.conn.commit()
             exito = True
         return exito
 
     def altaPedido(self, pedido):
         exito = False
         if isinstance(pedido, Pedido):
-            self.__pedidos.append(pedido)
+            self.cursor.execute(
+                "INSERT INTO pedido VALUES('" + pedido.oCliente + ", '" + pedido.oVendedor + "', '" + pedido.fechaPedido + "', " + pedido.total + ")")
+            self.conn.commit()
             exito = True
         return exito
 
     def numClientes(self):
-        iCantidad = 0
-        for x in self.__personas:
-            if isinstance(x, Cliente):
-                iCantidad += 1
+        iCantidad = self.cursor.execute('SELECT COUNT(*) FROM cliente').fetchall()
         return iCantidad
 
     def numVendedores(self):
-        iCantidad = 0
-        for x in self.__personas:
-            if isinstance(x, Vendedor):
-                iCantidad += 1
+        iCantidad = self.cursor.execute('SELECT COUNT(*) FROM vendedor').fetchall()
         return iCantidad
 
     def numPedidos(self):
-        return int(len(self.__pedidos))
+        iCantidad = self.cursor.execute('SELECT COUNT(*) FROM pedido').fetchall()
+        return iCantidad
 
     def importeTotalPedidos(self):
-        importeTotal = float(0)
-        for x in self.__pedidos:
-            importeTotal += float(x.total)
+        importeTotal = self.cursor.execute('SELECT SUM(total) FROM pedido')
         return importeTotal
 
     def listadoClientes(self):
         salida = ""
-        for x in self.__personas:
-            if isinstance(x, Cliente):
-                salida += x.__str__()
+        self.cursor.execute('SELECT * FROM cliente')
+        rows = self.cursor.fetchall()
+
+        for row in rows:
+            salida += row
+
         return salida
 
     def listadoVendedores(self):
         salida = ""
-        for x in self.__personas:
-            if isinstance(x, Vendedor):
-                salida += x.__str__()
+        self.cursor.execute('SELECT * FROM vendedor')
+        rows = self.cursor.fetchall()
+
+        for row in rows:
+            salida += row
+
         return salida
 
     def listadoPedidosFecha(self, fecha):
         salida = ""
-        for x in self.__pedidos:
-            if x.fechaPedido == fecha:
-                salida += x.__str__()
+        self.cursor.execute('SELECT * FROM pedido WHERE fechaPedido = ' + fecha + ' ')
+        rows = self.cursor.fetchall()
+
+        for row in rows:
+            salida += row
+
         return salida
 
     def crearTablaCliente(self):
@@ -89,5 +100,9 @@ class Tienda:
         self.cursor.execute(
             "CREATE TABLE IF NOT EXISTS pedido(idPedido integer PRIMARY KEY AUTOINCREMENT , oCliente text, oVendedor "
             "text, fechaPedido "
-            "text, total real)")
+            "text, total real, FOREIGN KEY (oCliente) REFERENCES cliente(dni), FOREIGN KEY (oVendedor) REFERENCES "
+            "vendedor(dni))")
         self.conn.commit()
+
+    def cerrarConexion(self):
+        self.conn.close()
