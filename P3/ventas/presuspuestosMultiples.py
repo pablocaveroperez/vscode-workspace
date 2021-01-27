@@ -5,6 +5,37 @@ class ModeloDePresupuestoMultiple(ModeloDePresupuesto):
     def __int__(self):
         self.servicios = []
 
+    def buscarServicio(self, servicio):
+        exito = False
+        i = 0
+        while i < len(self.servicios) and exito:
+            if self.servicios[i] == servicio:
+                exito = True
+            else:
+                i += 1
+        if not exito:
+            i = -1
+        return i
+
+    def modificarServicio(self, servicio):
+        posicion = self.buscarServicio(servicio)
+        if posicion != -1:
+            self.servicios.insert(posicion, servicio)
+        return posicion
+
+    def eliminarServicio(self, servicio):
+        posicion = self.buscarServicio(servicio)
+        if posicion != -1:
+            self.servicios.pop(posicion)
+        return posicion
+
+    def addServicio(self, servicio):
+        exito = False
+        if self.buscarServicio(servicio) == -1:
+            self.servicios.append(servicio)
+            exito = True
+        return exito
+
     def listarServicios(self):
         salida = "\n" + self.divline
         salida += "\nLista de servicios"
@@ -34,4 +65,3 @@ class ModeloDePresupuestoMultiple(ModeloDePresupuesto):
         txt += '\n\tMONTO TOTAL: €%0.2f\n' % (float(self.__neto))
         txt += self.divline + '\n'
         return txt
-
