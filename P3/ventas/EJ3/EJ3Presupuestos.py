@@ -1,4 +1,4 @@
-from ventas.presupuestos import *
+from P3.ventas.presupuestos import *
 
 #nombreCliente = input("\nIntroduce el nombre del cliente: ")
 #apellidoCliente = input("\nIntroduce los apellidos del cliente: ")
