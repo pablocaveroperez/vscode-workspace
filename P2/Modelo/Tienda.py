@@ -75,15 +75,19 @@ class Tienda:
         return salida
 
     def crearTablaCliente(self):
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS cliente(dni text PRIMARY KEY, nombre text, apellidos text, telefono integer, direccion text)")
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS cliente(dni text PRIMARY KEY, nombre text, apellidos text, "
+                            "telefono integer, direccion text)")
         self.conn.commit()
 
     def crearTablaVendedor(self):
         self.cursor.execute(
-            "CREATE TABLE IF NOT EXISTS vendedor(dni text PRIMARY KEY, nombre text, apellidos text, usuario text, password text)")
+            "CREATE TABLE IF NOT EXISTS vendedor(dni text PRIMARY KEY, nombre text, apellidos text, usuario text, "
+            "password text)")
         self.conn.commit()
 
     def crearTablaPedido(self):
         self.cursor.execute(
-            "CREATE TABLE IF NOT EXISTS pedido(oCliente text PRIMARY KEY, oVendedor text PRIMARY KEY, fechaPedido text, total real)")
+            "CREATE TABLE IF NOT EXISTS pedido(idPedido integer PRIMARY KEY AUTOINCREMENT , oCliente text, oVendedor "
+            "text, fechaPedido "
+            "text, total real)")
         self.conn.commit()
